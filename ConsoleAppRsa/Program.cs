@@ -117,10 +117,30 @@ f44969576b3a817876594336ca0563da8a036398b57cbac58943959e9d694c01";
         {
             StringBuilder stringBuilder = new StringBuilder();
 
+            //modulus is the RSA modulus n.
+            //modulus           INTEGER,  -- n
+            stringBuilder.AppendLine($"parameters.Modulus.Length = {parameters.Modulus.Length}");
+            stringBuilder.AppendLine($"parameters.Modulus = {ByteArrayToString(parameters.Modulus)}");
+
+            //publicExponent is the RSA public exponent e.
+            //publicExponent    INTEGER,  -- e
+            stringBuilder.AppendLine($"parameters.Exponent.Length = {parameters.Exponent.Length}");
+            stringBuilder.AppendLine($"parameters.Exponent = {ByteArrayToString(parameters.Exponent)}");
+
             //privateExponent is the RSA private exponent d.
             //privateExponent   INTEGER,  -- d
             stringBuilder.AppendLine($"parameters.D.Length = {parameters.D?.Length}");
             stringBuilder.AppendLine($"parameters.D = {ByteArrayToString(parameters.D)}");
+
+            //prime1 is the prime factor p of n.
+            //prime1            INTEGER,  -- p
+            stringBuilder.AppendLine($"parameters.P.Length = {parameters.P?.Length}");
+            stringBuilder.AppendLine($"parameters.P = {ByteArrayToString(parameters.P)}");
+
+            //prime2 is the prime factor q of n.
+            //prime2            INTEGER,  -- q
+            stringBuilder.AppendLine($"parameters.Q.Length = {parameters.Q?.Length}");
+            stringBuilder.AppendLine($"parameters.Q = {ByteArrayToString(parameters.Q)}");
 
             //exponent1 is d mod (p - 1).
             //exponent1         INTEGER,  -- d mod (p-1)
@@ -132,30 +152,10 @@ f44969576b3a817876594336ca0563da8a036398b57cbac58943959e9d694c01";
             stringBuilder.AppendLine($"parameters.DQ.Length = {parameters.DQ?.Length}");
             stringBuilder.AppendLine($"parameters.DQ = {ByteArrayToString(parameters.DQ)}");
 
-            //publicExponent is the RSA public exponent e.
-            //publicExponent    INTEGER,  -- e
-            stringBuilder.AppendLine($"parameters.Exponent.Length = {parameters.Exponent.Length}");
-            stringBuilder.AppendLine($"parameters.Exponent = {ByteArrayToString(parameters.Exponent)}");
-
             //coefficient is the CRT coefficient q^(-1) mod p.
             //coefficient       INTEGER,  -- (inverse of q) mod p
             stringBuilder.AppendLine($"parameters.InverseQ.Length = {parameters.InverseQ?.Length}");
             stringBuilder.AppendLine($"parameters.InverseQ = {ByteArrayToString(parameters.InverseQ)}");
-
-            //modulus is the RSA modulus n.
-            //modulus           INTEGER,  -- n
-            stringBuilder.AppendLine($"parameters.Modulus.Length = {parameters.Modulus.Length}");
-            stringBuilder.AppendLine($"parameters.Modulus = {ByteArrayToString(parameters.Modulus)}");
-
-            //prime1 is the prime factor p of n.
-            //prime1            INTEGER,  -- p
-            stringBuilder.AppendLine($"parameters.P.Length = {parameters.P?.Length}");
-            stringBuilder.AppendLine($"parameters.P = {ByteArrayToString(parameters.P)}");
-
-            //prime2 is the prime factor q of n.
-            //prime2            INTEGER,  -- q
-            stringBuilder.AppendLine($"parameters.Q.Length = {parameters.Q?.Length}");
-            stringBuilder.AppendLine($"parameters.Q = {ByteArrayToString(parameters.Q)}");
 
             Console.WriteLine(stringBuilder);
         }
