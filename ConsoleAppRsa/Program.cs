@@ -36,6 +36,10 @@ namespace ConsoleAppRsa
 
         public static string ByteArrayToString(byte[] ba)
         {
+            if (ba == null)
+            {
+                return string.Empty;
+            }
             StringBuilder hex = new StringBuilder(ba.Length * 2);
             foreach (byte b in ba)
                 hex.AppendFormat("{0:x2}", b);
@@ -105,13 +109,37 @@ f44969576b3a817876594336ca0563da8a036398b57cbac58943959e9d694c01";
 
         }
 
+        /// <summary>
+        /// https://tools.ietf.org/html/rfc8017#appendix-A.1.1
+        /// </summary>
+        /// <param name="parameters"></param>
         public static void PrintRsa(RSAParameters parameters)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine($"parameters.Modulus.Length = {parameters.Modulus.Length}");
-            stringBuilder.AppendLine($"parameters.Modulus = {ByteArrayToString(parameters.Modulus)}");
+            stringBuilder.AppendLine($"parameters.D.Length = {parameters.D?.Length}");
+            stringBuilder.AppendLine($"parameters.D = {ByteArrayToString(parameters.D)}");
+
+            stringBuilder.AppendLine($"parameters.DP.Length = {parameters.DP?.Length}");
+            stringBuilder.AppendLine($"parameters.DP = {ByteArrayToString(parameters.DP)}");
+
+            stringBuilder.AppendLine($"parameters.DQ.Length = {parameters.DQ?.Length}");
+            stringBuilder.AppendLine($"parameters.DQ = {ByteArrayToString(parameters.DQ)}");
+
             stringBuilder.AppendLine($"parameters.Exponent.Length = {parameters.Exponent.Length}");
             stringBuilder.AppendLine($"parameters.Exponent = {ByteArrayToString(parameters.Exponent)}");
+
+            stringBuilder.AppendLine($"parameters.InverseQ.Length = {parameters.InverseQ?.Length}");
+            stringBuilder.AppendLine($"parameters.InverseQ = {ByteArrayToString(parameters.InverseQ)}");
+
+            stringBuilder.AppendLine($"parameters.Modulus.Length = {parameters.Modulus.Length}");
+            stringBuilder.AppendLine($"parameters.Modulus = {ByteArrayToString(parameters.Modulus)}");
+
+            stringBuilder.AppendLine($"parameters.P.Length = {parameters.P?.Length}");
+            stringBuilder.AppendLine($"parameters.P = {ByteArrayToString(parameters.P)}");
+
+            stringBuilder.AppendLine($"parameters.P.Length = {parameters.Q?.Length}");
+            stringBuilder.AppendLine($"parameters.P = {ByteArrayToString(parameters.Q)}");
+
             Console.WriteLine(stringBuilder);
         }
     }
